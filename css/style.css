@@ -1,0 +1,92 @@
+/* style.css
+   Gaya kustom di luar utility class Tailwind.
+   Tema visual: "arsip akademik" — kertas, tinta navy, dan aksen kuningan,
+   terinspirasi dari katalog kartu perpustakaan & binder semester kuliah.
+*/
+
+/* === Tab semester bergaya "tab binder fisik" ===
+   Karena semester memang sebuah URUTAN (1 sampai 8), penomoran di sini
+   punya makna nyata — bukan sekadar dekorasi. Tab aktif "naik" sejajar
+   dengan panel konten di bawahnya; tab lain sedikit turun, seolah belum ditarik. */
+.tab-binder {
+  position: relative;
+  padding: 0.65rem 1.1rem 0.55rem;
+  border-radius: 8px 8px 0 0;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  background: #ece7d8;
+  color: #8a8272;
+  border: 1px solid #d8d2c4;
+  border-bottom: none;
+  cursor: pointer;
+  transform: translateY(7px);
+  transition: transform 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+}
+.tab-binder:hover {
+  transform: translateY(3px);
+  color: #1b2a4a;
+}
+.tab-binder.is-active {
+  background: #fcfbf7;
+  color: #1b2a4a;
+  font-weight: 600;
+  transform: translateY(0);
+  box-shadow: 0 -3px 10px rgba(27, 42, 74, 0.07);
+}
+.tab-binder .tab-num {
+  color: #a6803d;
+  margin-right: 0.3rem;
+}
+.tab-binder.is-active .tab-num {
+  color: #a6803d;
+}
+
+/* Kartu modul: sedikit terangkat saat hover, seperti mengangkat kartu katalog */
+.module-card {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.module-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -12px rgba(27, 42, 74, 0.2);
+}
+
+/* === Reader mode === */
+#viewer-container::-webkit-scrollbar {
+  width: 10px;
+}
+#viewer-container::-webkit-scrollbar-thumb {
+  background-color: #4b5a7a;
+  border-radius: 9999px;
+}
+#viewer-container::-webkit-scrollbar-track {
+  background-color: #16223f;
+}
+#pdf-canvas {
+  display: block;
+  margin-bottom: 2.5rem;
+  background: #ffffff;
+  box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.5);
+}
+/* Sembunyikan spinner bawaan input number agar lebih rapi */
+#page-input::-webkit-inner-spin-button,
+#page-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Aksesibilitas: fokus keyboard tetap terlihat jelas */
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+  outline: 2px solid #a6803d;
+  outline-offset: 2px;
+}
+
+/* Hormati preferensi pengguna yang mematikan animasi */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
