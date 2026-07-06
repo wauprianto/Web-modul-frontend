@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unggah Modul — Perpustakaan Semester</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Spectral:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#1B2A4A",
+            paper: "#F6F4EF",
+            card: "#FCFBF7",
+            brass: "#A6803D",
+            "brass-dark": "#8C6A2F",
+            stamp: "#8B3A3A",
+            hairline: "#D8D2C4",
+            ledger: "#4B7A5B",
+            muted: "#6B6455",
+          },
+          fontFamily: {
+            serif: ["Spectral", "serif"],
+            sans: ["Inter", "sans-serif"],
+            mono: ['"IBM Plex Mono"', "monospace"],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="bg-paper font-sans text-ink min-h-screen">
+  <header class="border-b border-hairline bg-paper/95">
+    <div class="max-w-2xl mx-auto px-6 py-5 flex items-center justify-between">
+      <p class="font-mono text-[0.68rem] tracking-[0.15em] text-brass uppercase">Arsip Modul Kuliah</p>
+      <a href="index.html" class="text-sm font-medium text-ink hover:text-brass transition-colors">← Kembali</a>
+    </div>
+  </header>
+
+  <main class="max-w-2xl mx-auto px-6 py-10">
+    <div class="bg-card rounded-2xl border border-hairline p-8">
+      <h2 class="font-serif text-xl font-semibold mb-1">Unggah Modul Baru</h2>
+      <p class="text-sm text-muted mb-6">Pilih semester tujuan, lalu pilih file PDF modul yang ingin disimpan.</p>
+
+      <form id="upload-form" class="space-y-5">
+        <div>
+          <label for="semester-select" class="block text-sm font-medium mb-1.5">Semester</label>
+          <select
+            id="semester-select"
+            required
+            class="w-full border border-hairline bg-paper rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brass"
+          ></select>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium mb-1.5">File PDF</label>
+          <label
+            for="file-input"
+            class="flex items-center justify-center border-2 border-dashed border-hairline rounded-lg py-9 cursor-pointer hover:border-brass transition-colors"
+          >
+            <span id="file-name-label" class="text-sm text-muted font-mono">Klik untuk pilih file PDF</span>
+          </label>
+          <input type="file" id="file-input" accept="application/pdf" class="hidden" required />
+        </div>
+
+        <div id="upload-status" class="hidden"></div>
+
+        <button
+          id="submit-btn"
+          type="submit"
+          class="w-full bg-brass text-white font-medium py-2.5 rounded-lg hover:bg-brass-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          Unggah Modul
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mode Baca — Perpustakaan Semester</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Spectral:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#1B2A4A",
+            paper: "#F6F4EF",
+            card: "#FCFBF7",
+            brass: "#A6803D",
+            "brass-dark": "#8C6A2F",
+            stamp: "#8B3A3A",
+            hairline: "#D8D2C4",
+            ledger: "#4B7A5B",
+            muted: "#6B6455",
+          },
+          fontFamily: {
+            serif: ["Spectral", "serif"],
+            sans: ["Inter", "sans-serif"],
+            mono: ['"IBM Plex Mono"', "monospace"],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="bg-[#0F1A33] h-screen overflow-hidden flex flex-col font-sans">
+  <!-- Toolbar -->
+  <header class="bg-ink text-paper px-4 py-3 flex items-center justify-between gap-4 shrink-0 border-b border-white/10">
+    <div class="flex items-center gap-3 min-w-0">
+      <a href="index.html" class="text-paper/70 hover:text-paper text-sm shrink-0 transition-colors">← Kembali</a>
+      <h1 id="pdf-title" class="font-serif text-sm truncate"></h1>
+    </div>
+
+    <div class="flex items-center gap-2 shrink-0 font-mono">
+      <!-- Navigasi halaman -->
+      <button id="prev-btn" class="bg-white/10 hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed text-paper text-sm px-3 py-1.5 rounded-md transition-colors">
+        ‹ Prev
+      </button>
+      <div class="flex items-center gap-1 text-sm">
+        <input id="page-input" type="number" min="1" value="1" class="w-12 text-center bg-white/10 rounded-md px-1 py-1.5 text-paper" />
+        <span class="text-paper/60">/ <span id="page-count">–</span></span>
+      </div>
+      <button id="next-btn" class="bg-white/10 hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed text-paper text-sm px-3 py-1.5 rounded-md transition-colors">
+        Next ›
+      </button>
+
+      <div class="w-px h-5 bg-white/15 mx-1"></div>
+
+      <!-- Zoom -->
+      <button id="zoom-out-btn" class="bg-white/10 hover:bg-white/20 text-paper text-sm w-8 h-8 rounded-md transition-colors">−</button>
+      <span id="zoom-level" class="text-sm w-12 text-center text-paper/80">125%</span>
+      <button id="zoom-in-btn" class="bg-white/10 hover:bg-white/20 text-paper text-sm w-8 h-8 rounded-md transition-colors">+</button>
+    </div>
+  </header>
+
+  <!-- Area render PDF (scrollable saat konten lebih besar dari viewport) -->
+  <div id="viewer-container" class="flex-1 overflow-auto flex justify-center py-8 relative">
+    <canvas id="pdf-canvas"></canvas>
+
+    <div id="loading-overlay" class="absolute inset-0 flex items-center justify-center text-paper/60 font-mono text-sm">
+      Memuat PDF…
+    </div>
+    <div id="error-overlay" class="hidden absolute inset-0 flex items-center justify-center text-red-300 px-6 text-center text-sm"></div>
+  </div>
+
+  <script type="module" src="js/reader.js"></script>
+</body>
+</html>

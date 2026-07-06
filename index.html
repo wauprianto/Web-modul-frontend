@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perpustakaan Semester — Modul Kuliah</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Spectral:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#1B2A4A",
+            paper: "#F6F4EF",
+            card: "#FCFBF7",
+            brass: "#A6803D",
+            "brass-dark": "#8C6A2F",
+            stamp: "#8B3A3A",
+            hairline: "#D8D2C4",
+            ledger: "#4B7A5B",
+            muted: "#6B6455",
+          },
+          fontFamily: {
+            serif: ["Spectral", "serif"],
+            sans: ["Inter", "sans-serif"],
+            mono: ['"IBM Plex Mono"', "monospace"],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="bg-paper font-sans text-ink min-h-screen">
+  <!-- Navbar -->
+  <header class="border-b border-hairline bg-paper/95 backdrop-blur sticky top-0 z-10">
+    <div class="max-w-5xl mx-auto px-6 py-5 flex items-center justify-between gap-4">
+      <div>
+        <p class="font-mono text-[0.68rem] tracking-[0.15em] text-brass uppercase">Arsip Modul Kuliah</p>
+        <h1 class="font-serif text-2xl font-semibold leading-tight">Perpustakaan Semester</h1>
+      </div>
+      <a
+        href="admin.html"
+        class="shrink-0 inline-flex items-center gap-1.5 bg-ink text-paper text-sm font-medium px-4 py-2.5 rounded-lg hover:bg-ink/90 transition-colors"
+      >
+        + Unggah Modul
+      </a>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-6 py-8">
+    <!-- Tab semester (dibuat dinamis oleh main.js) -->
+    <div id="semester-tabs" class="flex gap-1 overflow-x-auto pb-0"></div>
+
+    <!-- Panel konten -->
+    <div class="content-panel bg-card rounded-b-xl rounded-tr-xl border border-hairline p-6 min-h-[320px]">
+      <div id="loading-state" class="hidden text-center py-16 text-muted font-mono text-sm">
+        Memuat modul…
+      </div>
+
+      <div id="empty-state" class="hidden text-center py-16">
+        <p class="font-serif text-lg mb-1">Rak ini masih kosong</p>
+        <p class="text-sm text-muted mb-4">Belum ada modul yang diunggah untuk semester ini.</p>
+        <a href="admin.html" class="text-sm font-medium text-brass hover:text-brass-dark hover:underline">
+          Unggah modul pertama →
+        </a>
+      </div>
+
+      <div id="module-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
